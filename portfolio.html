@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Kumar | Space-Themed AI Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --space-bg: #050505;
+            --nebula-purple: #6d28d9;
+            --nebula-blue: #1e40af;
+            --star-white: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #f3f4f6;
+            --accent: #a78bfa; 
+            --nav-height: 70px;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #0b1120 0%, #000000 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- UNIVERSE ELEMENTS --- */
+
+        /* Stars Animation */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Moon */
+        .moon {
+            position: absolute;
+            top: 100px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: #f1f1f1;
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2), 0 0 40px rgba(255,255,255,0.2);
+            z-index: -1;
+        }
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px;
+            width: 15px; height: 15px;
+            background: #ddd;
+            border-radius: 50%;
+            box-shadow: 25px 30px 0 #ddd, 35px 10px 0 #ddd;
+            opacity: 0.6;
+        }
+
+        /* Satellite */
+        .satellite {
+            position: fixed;
+            top: 20%;
+            left: -100px;
+            font-size: 2rem;
+            color: var(--accent);
+            z-index: -1;
+            animation: orbit 25s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes orbit {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(120vw) translateY(100px) rotate(360deg); }
+        }
+
+        /* --- NAVBAR & SECTIONS --- */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            height: var(--nav-height);
+            padding: 0 8%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            margin-left: 20px;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--nav-height) 10% 0;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(45deg, var(--nebula-purple), var(--nebula-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(109, 40, 217, 0.6);
+        }
+
+        section {
+            padding: 100px 10% 60px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px; height: 3px;
+            background: var(--accent);
+            position: absolute;
+            bottom: -10px; left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--accent);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.9);
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .moon { width: 50px; height: 50px; top: 80px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="stars-container" id="stars"></div>
+
+<div class="moon"></div>
+<div class="satellite"><i class="fas fa-satellite"></i></div>
+
+<nav class="navbar">
+    <a href="IMG_0143.JPG" class="logo">
+        <img src="IMG_0143.JPG" alt="Krish">
+        <strong>Krish Kumar</strong>
+    </a>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Hi, I'm Krish Kumar</h1>
+        <p style="color: var(--accent); font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Exploring the AI Cosmos</p>
+        <p>B.Tech AIML Student | Future AI Architect</p>
+        <div class="hero-btns">
+            <a href="https://instagram.com/krish_x071" target="_blank" class="btn"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="mailto:krishkeer57@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section id="about">
+        <h2>Mission Brief</h2>
+        <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p>I am a B.Tech student at <strong>MIT Academy of Engineering</strong>, specializing in Artificial Intelligence and Machine Learning. I am passionate about building intelligent systems and solving real-world problems through data-driven insights.</p>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Academic Orbit</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>B.Tech AI & ML</h3>
+                <p>MIT Academy of Engineering</p>
+                <p style="color: var(--accent); font-weight: bold; margin-top: 5px;">SGPA: 7.9 (Sem 1)</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-school" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>HSC (12th)</h3>
+                <p>Higher Secondary Education</p>
+                <p style="color: var(--accent); font-weight: bold; margin-top: 5px;">Score: 89%</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>SSC (10th)</h3>
+                <p>Secondary School Education</p>
+                <p style="color: var(--accent); font-weight: bold; margin-top: 5px;">Score: 87%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="tags-container">
+            <span class="tag">Python</span>
+            <span class="tag">C</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">AI Basics</span>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Connect with Me</h2>
+        <div class="grid" style="max-width: 600px; margin: 0 auto;">
+            <div class="card" style="text-align: center;">
+                <a href="mailto:krishkeer57@gmail.com" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--accent);"></i>
+                    <p>krishkeer57@gmail.com</p>
+                </a>
+            </div>
+        <!-- <div class="grid" style="max-width: 600px; margin: 0 auto;"> -->
+            <div class="card" style="text-align: center;">
+                <a href="mailto:202501110001@mitaoe.ac.in" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--accent);"></i>
+                    <p>202501110001@mitaoe.ac.in</p>
+                </a>
+            </div>
+            <div class="card" style="text-align: center;">
+                <a href="https://instagram.com/krish_x071" target="_blank" style="color: inherit; text-decoration: none;">
+                    <i class="fab fa-instagram" style="font-size: 1.5rem; color: var(--accent);"></i>
+                    <p>@krish_x071</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    &copy; 2026 Krish Kumar | THANKS FOR VISIT
+</footer>
+
+<script>
+    // Generate Stars Dynamically
+    const starsContainer = document.getElementById('stars');
+    const starCount = 150;
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random Position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // Random Size
+        const size = Math.random() * 2 + 1;
+        
+        // Random Duration for animation
+        const duration = Math.random() * 3 + 2;
+
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.setProperty('--duration', `${duration}s`);
+        
+        starsContainer.appendChild(star);
+    }
+</script>
+
+</body>
+</html>
